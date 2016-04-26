@@ -40,12 +40,12 @@ package trolling.property
 			_name = value;
 		}
 		
-		public function get parent():DisplayObject
+		public function get parent():GameObject
 		{
 			return _parent;
 		}
 		
-		public function set parent(value:DisplayObject):void
+		public function set parent(value:GameObject):void
 		{
 			_parent = value;
 		}
