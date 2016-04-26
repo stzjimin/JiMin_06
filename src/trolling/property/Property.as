@@ -1,8 +1,10 @@
 package trolling.property
 {
+	import flash.events.EventDispatcher;
+	
 	import trolling.object.GameObject;
 
-	public class Property
+	public class Property extends EventDispatcher
 	{		
 		private var _type:String;
 		private var _name:String;
