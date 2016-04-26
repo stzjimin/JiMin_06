@@ -1,8 +1,8 @@
 package trolling
 {
-	import trolling.object.DisplayObject;
+	import trolling.object.GameObject;
 
-	public class Stage extends DisplayObject
+	public class Stage extends GameObject
 	{
 		public function Stage()
 		{

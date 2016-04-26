@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="trolling.object.DisplayObject"/>
+    <classEntry path="trolling.object.GameObject"/>
     <classEntry path="trolling.property.Property"/>
     <classEntry path="trolling.property.PropertyType"/>
+    <classEntry path="trolling.Camera"/>
+    <classEntry path="trolling.property.animation.Animator"/>
+    <classEntry path="trolling.property.animation.State"/>
+    <classEntry path="trolling.property.control.Controller"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -1,15 +1,16 @@
 package trolling.object
 {
 	import flash.utils.Dictionary;
-	import trolling.property.Property;
+	
 	import trolling.Painter;
+	import trolling.property.Property;
 
-	public class DisplayObject
+	public class GameObject
 	{
 		private var _propertys:Dictionary;
-		private var _children:Vector.<DisplayObject>;
+		private var _children:Vector.<GameObject>;
 		
-		public function DisplayObject()
+		public function GameObject()
 		{
 			_propertys = new Dictionary();
 		}
@@ -18,14 +19,14 @@ package trolling.object
 		{
 			if(_propertys[property.type] == null)
 				_propertys[property.type] = new Vector.<Property>();
-			
+
 			_propertys[property.type].insertAt(_propertys[property.type].length, property);
 		}
 		
-		public function addChild(child:DisplayObject):void
+		public function addChild(child:GameObject):void
 		{
 			if(_children == null)
-				_children = new Vector.<DisplayObject>();
+				_children = new Vector.<GameObject>();
 			_children.insertAt(_children.length, child);
 		}
 		
