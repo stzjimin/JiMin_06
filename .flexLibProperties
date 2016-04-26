@@ -4,7 +4,6 @@
     <classEntry path="trolling.object.GameObject"/>
     <classEntry path="trolling.property.Property"/>
     <classEntry path="trolling.property.PropertyType"/>
-    <classEntry path="trolling.Camera"/>
     <classEntry path="trolling.property.animation.Animator"/>
     <classEntry path="trolling.property.animation.State"/>
     <classEntry path="trolling.property.control.Controller"/>
