@@ -9,12 +9,12 @@ package trolling.property
 		private var _parent:GameObject;
 		private var _isActive:Boolean;
 				
-		public function Property()
+		public function Property(type:String, name:String, parent:GameObject)
 		{
-			_name = null;
-			_type = null;
-			_parent = null;
-			_isActive = true;
+			_type = type;
+			_name = name;
+			_parent = parent;
+			_isActive = isActive;
 		}
 		
 		public function dispose():void
@@ -28,11 +28,6 @@ package trolling.property
 		public function get type():String
 		{
 			return _type;
-		}
-		
-		public function set type(value:String):void
-		{
-			_type = value;
 		}
 		
 		public function get name():String
