@@ -115,7 +115,8 @@ package Trolling.Rendering
 		
 		private function render():void
 		{
-			_painter.triangleData.initArray();
+			_painter.context.clear(1, 1, 1);
+		//	_painter.triangleData.initArray();
 			_stage.render(_painter);
 			_painter.present();
 		}

@@ -83,7 +83,7 @@ package Trolling.Rendering
 			
 			trace(viewPort.width + ", " + viewPort.height);
 			_context.configureBackBuffer(viewPort.width, viewPort.height, alias, true);
-		//	_context.setCulling(Context3DTriangleFace.BACK);
+			_context.setCulling(Context3DTriangleFace.BACK);
 			
 			_backBufferWidth = viewPort.width;
 			_backBufferHeight = viewPort.height;
@@ -103,7 +103,6 @@ package Trolling.Rendering
 		public function prePresent():void
 		{
 			_triangleData.initData();
-			_context.clear(1, 1, 1);
 			createVertexBuffer();
 			createIndexBuffer();
 			setVertextBuffer();

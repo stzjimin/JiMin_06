@@ -9,6 +9,7 @@ package Trolling.Object
 	public class DisplayObject
 	{
 		private var _parent:DisplayObject = null;
+		private var _depth:Number;
 		
 		private var _propertys:Dictionary;
 		private var _children:Vector.<DisplayObject> = new Vector.<DisplayObject>();
@@ -44,7 +45,8 @@ package Trolling.Object
 		}
 		
 		public function render(painter:Painter):void
-		{
+		{	
+			_depth = 0;
 			painter.triangleData.initArray();
 			var numChildren:int = _children.length;
 			trace("numChildren = " + numChildren);
@@ -70,10 +72,22 @@ package Trolling.Object
 //			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y+rect.height, 0, 0, 1]));
 //			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y+rect.height, 0, 1, 1]));
 			
-			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0, 0]));
-			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0, 0]));
-			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, 0, 0, 1, 0]));
-			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, 0, 0, 0, 1]));
+			trace("_depth = " + _depth);
+			if(numChildren == 0)
+			{
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0, 0]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, 0, 0, 0, 1]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, 0, 0, 1, 0]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0, 0]));
+			}
+			else
+			{
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, -0.5, 1, 0, 0]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, -0.5, 0, 0, 1]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, -0.5, 0, 1, 0]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, -0.5, 0, 0, 0]));
+			}
+			
 			
 //			painter.triangleData.vertexData.push(Vector.<Number>([1, 1, 0, 1, 0, 0]));
 //			painter.triangleData.vertexData.push(Vector.<Number>([-1, 1, 0, 0, 0, 0]));
@@ -93,6 +107,7 @@ package Trolling.Object
 			
 			painter.prePresent();
 		//	painter.present();
+			trace(numChildren);
 			
 			for(var i:int = 0; i < numChildren; i++)
 			{
@@ -112,6 +127,7 @@ package Trolling.Object
 				globalPoint.y -= parent.y;
 				
 				searchObject = searchObject.parent;
+				_depth++;
 			}
 			
 			trace(globalPoint);
