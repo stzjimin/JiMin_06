@@ -3,25 +3,59 @@ package Trolling.Rendering
 	public class TriangleData
 	{
 		private var _rawVertexData:Vector.<Number>;
-		private var _vertexData:Vector.<Vector.<Number>>;
+		private var _vertexData:Array;
 		private var _rawIndexData:Vector.<uint>;
-		private var _indexData:Vector.<Vector.<uint>>;
+		private var _indexData:Array;
 		
 		public function TriangleData()
 		{
-			_rawVertexData = new Vector.<Number>();
-			_vertexData = new Vector.<Vector.<Number>>();
-			
-			_rawIndexData = new Vector.<uint>();
-			_indexData = new Vector.<Vector.<uint>>();
+			initArray();
+		}
+		
+		public function initArray():void
+		{
+			_vertexData = new Array();
+			_indexData = new Array();
 		}
 
 		public function initData():void
 		{
+			_rawVertexData = new Vector.<Number>();
 			for(var i:int = 0; i < _vertexData.length; i++)
-				_rawVertexData = _rawVertexData.concat(_vertexData[i]);
+			{
+				var vecTemp:Vector.<Number> = Vector.<Number>(_vertexData[i]);
+			//	trace(_vertexData[i][0]);
+				_rawVertexData = _rawVertexData.concat(vecTemp);
+				trace("_rawVertexData.length = " + _rawVertexData.length);
+			}
+			
+			_rawIndexData = new Vector.<uint>();
 			for(var j:int = 0; j < _indexData.length; j++)
-				_rawIndexData = _rawIndexData.concat(_indexData[j]);
+			{
+				var indTemp:Vector.<uint> = Vector.<uint>(_indexData[j]);
+				_rawIndexData = _rawIndexData.concat(indTemp);
+				trace("_rawIndexData.length = " + _rawIndexData.length);
+			}
+		}
+		
+		public function get indexData():Array
+		{
+			return _indexData;
+		}
+		
+		public function set indexData(value:Array):void
+		{
+			_indexData = value;
+		}
+		
+		public function get vertexData():Array
+		{
+			return _vertexData;
+		}
+		
+		public function set vertexData(value:Array):void
+		{
+			_vertexData = value;
 		}
 		
 		public function get rawVertexData():Vector.<Number>
@@ -32,26 +66,6 @@ package Trolling.Rendering
 		public function set rawVertexData(value:Vector.<Number>):void
 		{
 			_rawVertexData = value;
-		}
-
-		public function get indexData():Vector.<Vector.<uint>>
-		{
-			return _indexData;
-		}
-
-		public function set indexData(value:Vector.<Vector.<uint>>):void
-		{
-			_indexData = value;
-		}
-
-		public function get vertexData():Vector.<Vector.<Number>>
-		{
-			return _vertexData;
-		}
-
-		public function set vertexData(value:Vector.<Vector.<Number>>):void
-		{
-			_vertexData = value;
 		}
 		
 		public function get rawIndexData():Vector.<uint>

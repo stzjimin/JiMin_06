@@ -34,7 +34,11 @@ package Trolling.Rendering
 
 		public function initProgram(context:Context3D):void
 		{
+			if(context != null)
+				trace(context);
 			_program = context.createProgram();
+			if(_program != null)
+				trace(_program);
 			_program.upload( _vertexShaderAssembler.agalcode, _fragmentShaderAssembler.agalcode);
 		}
 	}
