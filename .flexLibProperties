@@ -7,6 +7,9 @@
     <classEntry path="trolling.property.animation.Animator"/>
     <classEntry path="trolling.property.animation.State"/>
     <classEntry path="trolling.property.control.Controller"/>
+    <classEntry path="trolling.property.control.Movement"/>
+    <classEntry path="trolling.Scene"/>
+    <classEntry path="trolling.SceneManager"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
