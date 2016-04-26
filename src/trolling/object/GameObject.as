@@ -6,6 +6,7 @@ package trolling.object
 
 	public class GameObject
 	{
+		private const TAG:String = "[GameObject]";
 		
 		private var _properties:Dictionary; // key: Property Type, value: Property
 		
