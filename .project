@@ -15,4 +15,11 @@
 		<nature>com.adobe.flexbuilder.project.aslibnature</nature>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>[source path] [source path] src</name>
+			<type>2</type>
+			<location>C:/Users/user/Desktop/AGAL/Assignment_02/[source path] src</location>
+		</link>
+	</linkedResources>
 </projectDescription>

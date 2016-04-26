@@ -3,6 +3,7 @@
   <includeClasses>
     <classEntry path="Object.DisplayObject"/>
     <classEntry path="Object.Property"/>
+    <classEntry path="Object.PropertyType"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

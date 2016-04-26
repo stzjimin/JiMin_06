@@ -4,19 +4,33 @@ package Object
 
 	public class DisplayObject
 	{
-		private var _components:Dictionary;
+		private var _propertys:Dictionary;
+		private var _children:Vector.<DisplayObject>;
 		
 		public function DisplayObject()
 		{
-			_components = new Dictionary();
+			_propertys = new Dictionary();
 		}
 		
-		public function addComponent(component:Property):void
+		public function addComponent(property:Property):void
 		{
-			if(_components[component.type] == null)
-				_components[component.type] = new Vector.<Property>();
+			if(_propertys[property.type] == null)
+				_propertys[property.type] = new Vector.<Property>();
 			
-			_components[component.type].insertAt(_components[component.type].length, component);
+			_propertys[property.type].insertAt(_propertys[property.type].length, property);
+		}
+		
+		public function addChild(child:DisplayObject):void
+		{
+			if(_children == null)
+				_children = new Vector.<DisplayObject>();
+			_children.insertAt(_children.length, child);
+		}
+		
+		public function render(painter:Painter):void
+		{
+			var numChildren:int = _children.length;
+			
 		}
 	}
 }
