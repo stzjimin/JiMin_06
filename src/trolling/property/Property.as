@@ -1,12 +1,12 @@
 package trolling.property
 {
-	import trolling.object.DisplayObject;
+	import trolling.object.GameObject;
 
 	public class Property
 	{		
 		private var _type:String;
 		private var _name:String;
-		private var _parent:DisplayObject;
+		private var _parent:GameObject;
 		private var _isActive:Boolean;
 				
 		public function Property()
