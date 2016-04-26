@@ -12,6 +12,5 @@ package trolling.property
 		public static const RAY:String = "ray";
 		public static const EVENT:String = "event";
 		public static const CONTROL:String = "control";
-		public static const LOG:String = "log";
 	}
 }
