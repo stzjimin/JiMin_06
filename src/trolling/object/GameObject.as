@@ -6,11 +6,12 @@ package trolling.object
 
 	public class GameObject
 	{
-		private var _propertys:Dictionary;
+		
+		private var _properties:Dictionary; // key: Property Type, value: Property
 		
 		public function GameObject()
 		{
-			_propertys = new Dictionary();
+			_properties = new Dictionary();
 		}
 		
 		public function addComponent(property:Property):void
