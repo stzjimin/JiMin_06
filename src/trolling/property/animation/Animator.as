@@ -143,7 +143,7 @@ package trolling.property.animation
 			return _isPlaying;
 		}
 		
-		private function onKeyDown(event:KeyboardEvent):void
+		private function onKeyDown(event:KeyboardEvent):void // 혜윤: 현재 키보드 입력에 의해서만 애니메이션이 이루어지도록 되어 있어요
 		{
 			var key:uint = event.keyCode;
 			
