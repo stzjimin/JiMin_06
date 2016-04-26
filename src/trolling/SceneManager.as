@@ -1,4 +1,4 @@
-package trolling
+package Trolling
 {
 	import flash.utils.Dictionary;
 

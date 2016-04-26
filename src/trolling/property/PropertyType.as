@@ -1,4 +1,4 @@
-package trolling.property
+package Trolling.property
 {
 	public final class PropertyType
 	{

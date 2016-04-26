@@ -14,16 +14,16 @@ package Trolling.Rendering
 		
 		public function Program()
 		{
-			_fragmentShaderAssembler = new AGALMiniAssembler();
-			_fragmentShaderAssembler.assemble( Context3DProgramType.FRAGMENT,
-				"tex ft1, v0, fs0 <2d>\n" +
-				"mov oc, ft1"
-			);
-			
 			_vertexShaderAssembler = new AGALMiniAssembler();
 			_vertexShaderAssembler.assemble( Context3DProgramType.VERTEX,
 				"m44 op, va0, vc0\n" + // pos to clipspace
 				"mov v0, va1" // copy UV
+			);
+			
+			_fragmentShaderAssembler = new AGALMiniAssembler();
+			_fragmentShaderAssembler.assemble( Context3DProgramType.FRAGMENT,
+			//	"tex ft1, v0, fs0 <2d>\n" +
+				"mov oc, v0"
 			);
 		}
 		

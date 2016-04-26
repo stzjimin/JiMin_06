@@ -1,7 +1,7 @@
-package trolling
+package Trolling
 {
-	import trolling.object.GameObject;
-	import trolling.render.Painter;
+	import Trolling.Object.GameObject;
+	import Trolling.Rendering.Painter;
 
 	public class Scene
 	{

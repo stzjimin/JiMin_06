@@ -1,11 +1,11 @@
-package trolling.property.animation
+package Trolling.property.animation
 {
 	import flash.events.KeyboardEvent;
 	import flash.utils.Dictionary;
 	
-	import trolling.object.GameObject;
-	import trolling.property.Property;
-	import trolling.property.PropertyType;
+	import Trolling.Object.GameObject;
+	import Trolling.property.Property;
+	import Trolling.property.PropertyType;
 
 	public class Animator extends Property
 	{

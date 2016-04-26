@@ -33,6 +33,16 @@ package Trolling.Rendering
 		private var _backBufferWidth:Number;
 		private var _backBufferHeight:Number;
 		
+		public function get context():Context3D
+		{
+			return _context;
+		}
+
+		public function set context(value:Context3D):void
+		{
+			_context = value;
+		}
+
 		private var _moleCallBack:Function;
 		
 		public function Painter(stage3D:Stage3D)
@@ -53,8 +63,8 @@ package Trolling.Rendering
 		private function initMolehill(event:Event):void
 		{
 			_context = _stage3D.context3D;
-			setProgram();
 			_program.initProgram(_context);
+			setProgram();
 			_moleCallBack();
 		}
 		
@@ -72,8 +82,8 @@ package Trolling.Rendering
 				alias = 0;
 			
 			trace(viewPort.width + ", " + viewPort.height);
-			_context.configureBackBuffer(viewPort.width, viewPort.height, alias);
-			_context.setCulling(Context3DTriangleFace.BACK);
+			_context.configureBackBuffer(viewPort.width, viewPort.height, alias, true);
+		//	_context.setCulling(Context3DTriangleFace.BACK);
 			
 			_backBufferWidth = viewPort.width;
 			_backBufferHeight = viewPort.height;
@@ -81,27 +91,33 @@ package Trolling.Rendering
 		
 		public function present():void
 		{
-			var bitmap:Bitmap = new TextureBitmap();
-			texture = _context.createTexture(512, 1024, Context3DTextureFormat.BGRA, false);
-			texture.uploadFromBitmapData(bitmap.bitmapData);
+//			var bitmap:Bitmap = new TextureBitmap();
+//			texture = _context.createTexture(512, 1024, Context3DTextureFormat.BGRA, false);
+//			texture.uploadFromBitmapData(bitmap.bitmapData);
 			
+			
+		//	_context.drawTriangles(_indexBuffer);
+			_context.present();	
+		}
+		
+		public function prePresent():void
+		{
 			_triangleData.initData();
 			_context.clear(1, 1, 1);
 			createVertexBuffer();
 			createIndexBuffer();
 			setVertextBuffer();
 			setMatrix();
-			_context.setTextureAt(0, texture);
-			_context.drawTriangles(_indexBuffer, 0, _triangleData.indexData.length);
-			_context.present();	
+			_context.drawTriangles(_indexBuffer);
 		}
 		
 		public function createVertexBuffer():void
 		{
-			_vertexBuffer = _context.createVertexBuffer(_triangleData.vertexData.length, 5);
-			trace("_triangleData.vertexData.length = " + _triangleData.vertexData.length);
+			_vertexBuffer = _context.createVertexBuffer(_triangleData.vertexData.length, 6);
 			trace("_triangleData.rawVertexData = " + _triangleData.rawVertexData.length);
 			_vertexBuffer.uploadFromVector(_triangleData.rawVertexData, 0, _triangleData.vertexData.length);
+			trace("_triangleData.vertexData.length = " + _triangleData.vertexData.length);
+			trace("_triangleData.vertexData = " + _triangleData.rawVertexData);
 		}
 		
 		public function createIndexBuffer():void
@@ -109,12 +125,13 @@ package Trolling.Rendering
 			_indexBuffer = _context.createIndexBuffer(_triangleData.rawIndexData.length);
 			trace("_triangleData.rawIndexData.length = " + _triangleData.rawIndexData.length);
 			_indexBuffer.uploadFromVector(_triangleData.rawIndexData, 0, _triangleData.rawIndexData.length);
+			trace("_triangleData.rawIndexData = " + _triangleData.rawIndexData);
 		}
 		
 		public function setVertextBuffer():void
 		{
 			_context.setVertexBufferAt(0, _vertexBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
-			_context.setVertexBufferAt(1, _vertexBuffer, 3, Context3DVertexBufferFormat.FLOAT_2);
+			_context.setVertexBufferAt(1, _vertexBuffer, 3, Context3DVertexBufferFormat.FLOAT_3);
 		}
 		
 		public function setMatrix():void

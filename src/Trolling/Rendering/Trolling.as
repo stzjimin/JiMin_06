@@ -52,7 +52,17 @@ package Trolling.Rendering
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			trace("successed Creater");
 		}
-		
+
+		public function get stage():Stage
+		{
+			return _stage;
+		}
+
+		public function set stage(value:Stage):void
+		{
+			_stage = value;
+		}
+
 		private function onInitPainter():void
 		{
 			_painter.configureBackBuffer(_viewPort);

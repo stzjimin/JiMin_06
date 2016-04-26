@@ -1,8 +1,8 @@
-package trolling.property
+package Trolling.property
 {
 	import flash.events.EventDispatcher;
 	
-	import trolling.object.GameObject;
+	import Trolling.Object.GameObject;
 
 	public class Property extends EventDispatcher
 	{		

@@ -1,10 +1,10 @@
-package trolling.property.control
+package Trolling.property.control
 {
 	import flash.utils.Dictionary;
 	
-	import trolling.object.GameObject;
-	import trolling.property.Property;
-	import trolling.property.PropertyType;
+	import Trolling.Object.GameObject;
+	import Trolling.property.Property;
+	import Trolling.property.PropertyType;
 
 	public class Controller extends Property
 	{

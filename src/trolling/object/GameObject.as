@@ -1,8 +1,8 @@
-package trolling.object
+package Trolling.Object
 {
 	import flash.utils.Dictionary;
 	
-	import trolling.property.Property;
+	import Trolling.Object.Property;
 
 	public class GameObject
 	{

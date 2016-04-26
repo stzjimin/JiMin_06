@@ -9,7 +9,7 @@ package Trolling.Rendering
 		
 		public function TriangleData()
 		{
-			initArray();
+		//	initArray();
 		}
 		
 		public function initArray():void
@@ -26,7 +26,7 @@ package Trolling.Rendering
 				var vecTemp:Vector.<Number> = Vector.<Number>(_vertexData[i]);
 			//	trace(_vertexData[i][0]);
 				_rawVertexData = _rawVertexData.concat(vecTemp);
-				trace("_rawVertexData.length = " + _rawVertexData.length);
+			//	trace("_rawVertexData.length = " + _rawVertexData.length);
 			}
 			
 			_rawIndexData = new Vector.<uint>();
@@ -34,7 +34,7 @@ package Trolling.Rendering
 			{
 				var indTemp:Vector.<uint> = Vector.<uint>(_indexData[j]);
 				_rawIndexData = _rawIndexData.concat(indTemp);
-				trace("_rawIndexData.length = " + _rawIndexData.length);
+			//	trace("_rawIndexData.length = " + _rawIndexData.length);
 			}
 		}
 		
