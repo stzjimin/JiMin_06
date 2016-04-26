@@ -1,4 +1,4 @@
-package
+package trolling
 {
 	public class Data
 	{

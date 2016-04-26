@@ -1,6 +1,6 @@
-package
+package trolling
 {
-	import Object.DisplayObject;
+	import trolling.object.DisplayObject;
 
 	public class Stage extends DisplayObject
 	{

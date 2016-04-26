@@ -1,6 +1,8 @@
-package Object
+package trolling.object
 {
 	import flash.utils.Dictionary;
+	import trolling.property.Property;
+	import trolling.Painter;
 
 	public class DisplayObject
 	{

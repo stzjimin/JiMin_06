@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="Object.DisplayObject"/>
-    <classEntry path="Object.Property"/>
-    <classEntry path="Object.PropertyType"/>
+    <classEntry path="trolling.object.DisplayObject"/>
+    <classEntry path="trolling.property.Property"/>
+    <classEntry path="trolling.property.PropertyType"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
