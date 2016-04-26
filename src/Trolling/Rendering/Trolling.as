@@ -1,4 +1,4 @@
-package
+package Trolling.Rendering 
 {
 	import flash.display.Stage;
 	import flash.geom.Rectangle;

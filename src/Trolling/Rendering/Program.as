@@ -1,4 +1,4 @@
-package
+package Trolling.Rendering 
 {
 	import com.adobe.utils.AGALMiniAssembler;
 	
@@ -32,9 +32,9 @@ package
 			return _program;
 		}
 
-		public function initProgram(context3D:Context3D):void
+		public function initProgram(context:Context3D):void
 		{
-			_program = context3D.createProgram();
+			_program = context.createProgram();
 			_program.upload( _vertexShaderAssembler.agalcode, _fragmentShaderAssembler.agalcode);
 		}
 	}

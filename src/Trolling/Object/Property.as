@@ -1,4 +1,4 @@
-package Object
+package Trolling.Object
 {
 	public class Property
 	{

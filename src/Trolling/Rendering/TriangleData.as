@@ -1,13 +1,13 @@
-package
+package Trolling.Rendering 
 {
-	public class Data
+	public class TriangleData
 	{
 		private var _rawVertexData:Vector.<Number>;
 		private var _vertexData:Vector.<Vector.<Number>>;
 		private var _rawIndexData:Vector.<uint>;
 		private var _indexData:Vector.<Vector.<uint>>;
 		
-		public function Data()
+		public function TriangleData()
 		{
 			_rawVertexData = new Vector.<Number>();
 			_vertexData = new Vector.<Vector.<Number>>();
@@ -52,6 +52,16 @@ package
 		public function set vertexData(value:Vector.<Vector.<Number>>):void
 		{
 			_vertexData = value;
+		}
+		
+		public function get rawIndexData():Vector.<uint>
+		{
+			return _rawIndexData;
+		}
+		
+		public function set rawIndexData(value:Vector.<uint>):void
+		{
+			_rawIndexData = value;
 		}
 	}
 }
