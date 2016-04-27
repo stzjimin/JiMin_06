@@ -1,13 +1,13 @@
-package Trolling.property.animation
+package Trolling.Component.Animation
 {
 	import flash.events.KeyboardEvent;
 	import flash.utils.Dictionary;
 	
-	import Trolling.Object.GameObject;
-	import Trolling.property.Property;
-	import Trolling.property.PropertyType;
+	import Trolling.Object.DisplayObject;
+	import Trolling.Component.Component;
+	import Trolling.Component.ComponentType;
 
-	public class Animator extends Property
+	public class Animator extends Component
 	{
 		private const TAG:String = "[Animator]";
 		private const NONE:uint = 0;
@@ -16,9 +16,9 @@ package Trolling.property.animation
 		private var _currentState:uint; // KeyCode
 		private var _isPlaying:Boolean;
 		
-		public function Animator(name:String, parent:GameObject)
+		public function Animator(name:String, parent:DisplayObject)
 		{
-			super(PropertyType.ANIMATOR, name, parent);
+			super(ComponentType.ANIMATOR, name, parent);
 			
 			_currentState = NONE;
 			_isPlaying = false;

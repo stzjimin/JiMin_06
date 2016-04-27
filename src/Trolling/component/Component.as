@@ -1,17 +1,17 @@
-package Trolling.property
+package Trolling.Component
 {
 	import flash.events.EventDispatcher;
 	
-	import Trolling.Object.GameObject;
+	import Trolling.Object.DisplayObject;
 
-	public class Property extends EventDispatcher
+	public class Component extends EventDispatcher
 	{		
 		private var _type:String;
 		private var _name:String;
-		private var _parent:GameObject;
+		private var _parent:DisplayObject;
 		private var _isActive:Boolean;
 				
-		public function Property(type:String, name:String, parent:GameObject)
+		public function Component(type:String, name:String, parent:DisplayObject)
 		{
 			_type = type;
 			_name = name;
@@ -42,12 +42,12 @@ package Trolling.property
 			_name = value;
 		}
 		
-		public function get parent():GameObject
+		public function get parent():DisplayObject
 		{
 			return _parent;
 		}
 		
-		public function set parent(value:GameObject):void
+		public function set parent(value:DisplayObject):void
 		{
 			_parent = value;
 		}

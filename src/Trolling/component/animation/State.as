@@ -1,4 +1,4 @@
-package Trolling.property.animation
+package Trolling.Component.Animation
 {
 	import flash.display.BitmapData;
 	import flash.events.Event;

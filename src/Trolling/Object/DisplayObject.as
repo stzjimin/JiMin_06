@@ -9,13 +9,14 @@ package Trolling.Object
 	import flash.utils.Dictionary;
 	
 	import Trolling.Rendering.Painter;
+	import Trolling.Component.Component;
 
 	public class DisplayObject extends EventDispatcher
 	{
 		private var _parent:DisplayObject = null;
 		private var _depth:Number;
 		
-		private var _propertys:Dictionary;
+		private var _components:Dictionary;
 		private var _children:Vector.<DisplayObject> = new Vector.<DisplayObject>();
 		
 		private var _x:Number;
@@ -32,7 +33,7 @@ package Trolling.Object
 		public function DisplayObject()
 		{
 			_x = _y = _pivotX = _pivotY = _width = _height = 0.0;
-			_propertys = new Dictionary();
+			_components = new Dictionary();
 		}
 		
 		public function setColor(color:uint):void
@@ -41,12 +42,12 @@ package Trolling.Object
 			_bitmapData = new BitmapData(_width, _height, false, _color);
 		}
 
-		public function addComponent(property:Property):void
+		public function addComponent(component:Component):void
 		{
-			if(_propertys[property.type] == null)
-				_propertys[property.type] = new Vector.<Property>();
+			if(_components[component.type] == null)
+				_components[component.type] = new Vector.<Component>();
 			
-			_propertys[property.type].insertAt(_propertys[property.type].length, property);
+			_components[component.type].insertAt(_components[component.type].length, component);
 		}
 		
 		public function addChild(child:DisplayObject):void
