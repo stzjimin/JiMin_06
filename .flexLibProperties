@@ -3,6 +3,8 @@
   <includeClasses>
     <classEntry path="Jimining.Stage3DSprite"/>
     <classEntry path="Trolling.Utils.Color"/>
+    <classEntry path="Trolling.Component.DisplayComponent"/>
+    <classEntry path="Trolling.Component.Graphic.Image"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

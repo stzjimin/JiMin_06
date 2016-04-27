@@ -1,19 +1,19 @@
 package Trolling.Component.Animation
 {
-	import flash.events.KeyboardEvent;
+	import flash.display.BitmapData;
 	import flash.utils.Dictionary;
 	
-	import Trolling.Object.DisplayObject;
-	import Trolling.Component.Component;
 	import Trolling.Component.ComponentType;
+	import Trolling.Component.DisplayComponent;
+	import Trolling.Object.DisplayObject;
 
-	public class Animator extends Component
+	public class Animator extends DisplayComponent
 	{
 		private const TAG:String = "[Animator]";
-		private const NONE:uint = 0;
+		private const NONE:String = "none";
 		
-		private var _states:Dictionary; // key: KeyCode, value: State
-		private var _currentState:uint; // KeyCode
+		private var _states:Dictionary; // key: Name, value: State
+		private var _currentState:String; // Name
 		private var _isPlaying:Boolean;
 		
 		public function Animator(name:String, parent:DisplayObject)
@@ -28,7 +28,7 @@ package Trolling.Component.Animation
 		{
 			if (_states)
 			{
-				for (var key:uint in _states)
+				for (var key:String in _states)
 				{
 					State(_states[key]).dispose();
 					_states[key] = null;
@@ -36,12 +36,20 @@ package Trolling.Component.Animation
 			}
 			_states = null;
 			
-			_currentState = NONE;
+			_currentState = null;
 			_isPlaying = false;
 
-			removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			//removeEventListener(TouchEvent.ENDED, onTouch);
 			
 			super.dispose();
+		}
+		
+		public override function getRenderingResource():BitmapData
+		{
+			// to do 
+			
+			
+			return null;
 		}
 		
 		public function play():void
@@ -66,7 +74,7 @@ package Trolling.Component.Animation
 			State(_states[_currentState]).stop();
 		}
 				
-		public function addState(key:uint, name:String):State
+		public function addState(key:String, name:String):State
 		{
 			if (!name || name == "")
 			{
@@ -91,7 +99,7 @@ package Trolling.Component.Animation
 			if (isFirst)
 			{
 				_currentState = key;
-				addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+				//addEventListener(TouchEvent.ENDED, onTouch);
 			}
 			
 			return state;
@@ -104,7 +112,7 @@ package Trolling.Component.Animation
 				return;
 			}
 			
-			var key:uint = isState(name);
+			var key:String = isState(name);
 			if (key == NONE)
 			{
 				return;
@@ -121,39 +129,25 @@ package Trolling.Component.Animation
 		
 		public function get currentState():String
 		{
-			if (!_states || _currentState == NONE)
-			{
-				return null;
-			}
-			
-			return State(_states[_currentState]).name;	
+			return _currentState;	
 		}
 		
-		public function set currentState(name:String):void
-		{
-			var key:uint = isState(name);
-			if (key != NONE)
-			{
-				transition(key);
-			}
-		}
-		
-		public function get idPlaying():Boolean
+		public function get isPlaying():Boolean
 		{
 			return _isPlaying;
 		}
 		
-		private function onKeyDown(event:KeyboardEvent):void // 혜윤: 현재 키보드 입력에 의해서만 애니메이션이 이루어지도록 되어 있어요
-		{
-			var key:uint = event.keyCode;
-			
-			if (isKey(key))
-			{
-				transition(key);			
-			}
-		}
+//		private function onTouch(event:TouchEvent):void
+//		{
+//			// Get key
+//			
+//			if (isKey(key))
+//			{
+//				transition(key);			
+//			}
+//		}
 		
-		private function isKey(input:uint):Boolean
+		private function isKey(input:String):Boolean
 		{
 			if (!_states)
 			{
@@ -162,7 +156,7 @@ package Trolling.Component.Animation
 			
 			var result:Boolean = false;
 			
-			for (var key:uint in _states)
+			for (var key:String in _states)
 			{
 				if (key == input)
 				{
@@ -174,14 +168,14 @@ package Trolling.Component.Animation
 			return result;
 		}
 		
-		private function isState(input:String):uint
+		private function isState(input:String):String
 		{
 			if (!_states)
 			{
 				return NONE;	
 			}
 			
-			for (var key:uint in _states)
+			for (var key:String in _states)
 			{
 				var state:State = _states[key];
 				if (state.name == input)
@@ -193,7 +187,7 @@ package Trolling.Component.Animation
 			return NONE;
 		}
 		
-		private function transition(key:uint):void
+		private function transition(key:String):void
 		{
 			if (!_states || _currentState == NONE)
 			{

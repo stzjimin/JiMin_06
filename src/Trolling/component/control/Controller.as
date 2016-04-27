@@ -8,13 +8,13 @@ package Trolling.Component.Control
 
 	public class Controller extends Component
 	{
-		public const PLAYER:String = "player";
-		public const AI:String = "ai";
+		public static const PLAYER:String = "player";
+		public static const AI:String = "ai";
 		
 		private const TAG:String = "[Controller]";
 				
 		private var _id:String;
-		private var _movements:Dictionary; // key: KeyCode, value: State 
+		private var _movements:Dictionary; 
 		
 		public function Controller(name:String, parent:DisplayObject, id:String)
 		{
