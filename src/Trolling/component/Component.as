@@ -1,17 +1,17 @@
-package Trolling.property
+package Trolling.component
 {
 	import flash.events.EventDispatcher;
 	
 	import Trolling.Object.DisplayObject;
 
-	public class Property extends EventDispatcher
+	public class Component extends EventDispatcher
 	{		
 		private var _type:String;
 		private var _name:String;
 		private var _parent:DisplayObject;
 		private var _isActive:Boolean;
 				
-		public function Property(type:String, name:String, parent:DisplayObject)
+		public function Component(type:String, name:String, parent:DisplayObject)
 		{
 			_type = type;
 			_name = name;

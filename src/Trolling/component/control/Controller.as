@@ -1,12 +1,12 @@
-package Trolling.property.control
+package Trolling.component.control
 {
 	import flash.utils.Dictionary;
 	
 	import Trolling.Object.DisplayObject;
-	import Trolling.property.Property;
-	import Trolling.property.PropertyType;
+	import Trolling.component.Component;
+	import Trolling.component.ComponentType;
 
-	public class Controller extends Property
+	public class Controller extends Component
 	{
 		public const PLAYER:String = "player";
 		public const AI:String = "ai";
@@ -18,7 +18,7 @@ package Trolling.property.control
 		
 		public function Controller(name:String, parent:DisplayObject, id:String)
 		{
-			super(PropertyType.CONTROLLER, name, parent);
+			super(ComponentType.CONTROLLER, name, parent);
 			
 			_id = id;
 		}

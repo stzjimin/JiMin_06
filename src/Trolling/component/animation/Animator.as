@@ -1,13 +1,13 @@
-package Trolling.property.animation
+package Trolling.component.animation
 {
 	import flash.events.KeyboardEvent;
 	import flash.utils.Dictionary;
 	
 	import Trolling.Object.DisplayObject;
-	import Trolling.property.Property;
-	import Trolling.property.PropertyType;
+	import Trolling.component.Component;
+	import Trolling.component.ComponentType;
 
-	public class Animator extends Property
+	public class Animator extends Component
 	{
 		private const TAG:String = "[Animator]";
 		private const NONE:uint = 0;
@@ -18,7 +18,7 @@ package Trolling.property.animation
 		
 		public function Animator(name:String, parent:DisplayObject)
 		{
-			super(PropertyType.ANIMATOR, name, parent);
+			super(ComponentType.ANIMATOR, name, parent);
 			
 			_currentState = NONE;
 			_isPlaying = false;
