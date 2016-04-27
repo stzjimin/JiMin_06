@@ -1,24 +1,21 @@
 package Trolling.Rendering 
 {
-	import flash.display.Bitmap;
 	import flash.display.Stage3D;
 	import flash.display3D.Context3D;
 	import flash.display3D.Context3DProgramType;
-	import flash.display3D.Context3DTextureFormat;
 	import flash.display3D.Context3DTriangleFace;
 	import flash.display3D.Context3DVertexBufferFormat;
 	import flash.display3D.IndexBuffer3D;
 	import flash.display3D.VertexBuffer3D;
-	import flash.display3D.textures.Texture;
 	import flash.events.Event;
 	import flash.geom.Matrix3D;
 	import flash.geom.Rectangle;
+	
+	import Trolling.Object.DisplayObject;
 
 	public class Painter
-	{
-		[Embed( source = "iu3.jpg" )]
-		protected const TextureBitmap:Class;
-		protected var texture:Texture;
+	{	
+		private var _root:DisplayObject;
 		
 		private var _stage3D:Stage3D;
 		private var _context:Context3D;
@@ -33,6 +30,16 @@ package Trolling.Rendering
 		private var _backBufferWidth:Number;
 		private var _backBufferHeight:Number;
 		
+		public function get root():DisplayObject
+		{
+			return _root;
+		}
+
+		public function set root(value:DisplayObject):void
+		{
+			_root = value;
+		}
+
 		public function get context():Context3D
 		{
 			return _context;
@@ -64,7 +71,7 @@ package Trolling.Rendering
 		{
 			_context = _stage3D.context3D;
 			_program.initProgram(_context);
-			setProgram();
+		//	setProgram();
 			_moleCallBack();
 		}
 		
@@ -102,21 +109,28 @@ package Trolling.Rendering
 		
 		public function draw():void
 		{
-			_triangleData.initData();
-			createVertexBuffer();
-			createIndexBuffer();
-			setVertextBuffer();
-			setMatrix();
+			
 			_context.drawTriangles(_indexBuffer);
 		}
 		
-		public function createVertexBuffer():void
+		public function createVertexBuffer(type:int):void
 		{
-			_vertexBuffer = _context.createVertexBuffer(_triangleData.vertexData.length, 6);
-			trace("_triangleData.rawVertexData = " + _triangleData.rawVertexData.length);
-			_vertexBuffer.uploadFromVector(_triangleData.rawVertexData, 0, _triangleData.vertexData.length);
-			trace("_triangleData.vertexData.length = " + _triangleData.vertexData.length);
-			trace("_triangleData.vertexData = " + _triangleData.rawVertexData);
+			if(type == 1)
+			{
+				_vertexBuffer = _context.createVertexBuffer(_triangleData.vertexData.length, 5);
+				trace("_triangleData.rawVertexData = " + _triangleData.rawVertexData.length);
+				_vertexBuffer.uploadFromVector(_triangleData.rawVertexData, 0, _triangleData.vertexData.length);
+				trace("_triangleData.vertexData.length = " + _triangleData.vertexData.length);
+				trace("_triangleData.vertexData = " + _triangleData.rawVertexData);
+			}
+			else
+			{
+				_vertexBuffer = _context.createVertexBuffer(_triangleData.vertexData.length, 6);
+				trace("_triangleData.rawVertexData = " + _triangleData.rawVertexData.length);
+				_vertexBuffer.uploadFromVector(_triangleData.rawVertexData, 0, _triangleData.vertexData.length);
+				trace("_triangleData.vertexData.length = " + _triangleData.vertexData.length);
+				trace("_triangleData.vertexData = " + _triangleData.rawVertexData);
+			}
 		}
 		
 		public function createIndexBuffer():void
@@ -127,10 +141,18 @@ package Trolling.Rendering
 			trace("_triangleData.rawIndexData = " + _triangleData.rawIndexData);
 		}
 		
-		public function setVertextBuffer():void
+		public function setVertextBuffer(type:int):void
 		{
-			_context.setVertexBufferAt(0, _vertexBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
-			_context.setVertexBufferAt(1, _vertexBuffer, 3, Context3DVertexBufferFormat.FLOAT_3);
+			if(type == 1)
+			{
+				_context.setVertexBufferAt(0, _vertexBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
+				_context.setVertexBufferAt(1, _vertexBuffer, 3, Context3DVertexBufferFormat.FLOAT_2);
+			}
+			else
+			{
+				_context.setVertexBufferAt(0, _vertexBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
+				_context.setVertexBufferAt(1, _vertexBuffer, 3, Context3DVertexBufferFormat.FLOAT_3);
+			}
 		}
 		
 		public function setMatrix():void

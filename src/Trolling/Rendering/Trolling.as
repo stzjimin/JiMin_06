@@ -6,6 +6,8 @@ package Trolling.Rendering
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
+	import Trolling.Utils.Color;
+	
 	import Trolling.Object.DisplayObject;
 	
 	
@@ -39,15 +41,15 @@ package Trolling.Rendering
 			
 			_stage = new Stage(_viewPort.width, _viewPort.height, stage.color);
 			trace("stage init");
-			initializeRoot();
-			trace("initRoot");
-			
 			_nativeStage = stage;
 			_nativeStage.addChild(_nativeOverlay);
 			trace("addNativeOverlay");
 			
 			_painter = createPainter(stage3D);
 			_painter.initPainter(onInitPainter);
+			
+			initializeRoot();
+			trace("initRoot");
 			
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			trace("successed Creater");
@@ -80,6 +82,7 @@ package Trolling.Rendering
 				_root.width = _stage.width;
 				_root.height = _stage.height;
 				_stage.addChild(_root);
+				_painter.root = _root;
 			}
 		}
 		
@@ -115,9 +118,9 @@ package Trolling.Rendering
 		
 		private function render():void
 		{
-			_painter.context.clear(1, 1, 1);
+			_painter.context.clear(Color.getRed(_stage.color)/255.0, Color.getGreen(_stage.color)/255.0, Color.getBlue(_stage.color)/255.0);
 		//	_painter.triangleData.initArray();
-			_stage.render(_painter);
+			_root.render(_painter);
 			_painter.present();
 		}
 	}

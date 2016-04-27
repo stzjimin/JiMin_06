@@ -1,5 +1,8 @@
 package Trolling.Object
 {
+	import flash.display.BitmapData;
+	import flash.display3D.Context3DTextureFormat;
+	import flash.display3D.textures.Texture;
 	import flash.events.EventDispatcher;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -22,10 +25,20 @@ package Trolling.Object
 		private var _width:Number;
 		private var _height:Number;
 		
+		private var _color:uint;
+		private var _bitmapData:BitmapData;
+		private var _texture:Texture;
+		
 		public function DisplayObject()
 		{
 			_x = _y = _pivotX = _pivotY = _width = _height = 0.0;
 			_propertys = new Dictionary();
+		}
+		
+		public function setColor(color:uint):void
+		{
+			_color = color;
+			_bitmapData = new BitmapData(_width, _height, false, _color);
 		}
 
 		public function addComponent(property:Property):void
@@ -74,38 +87,65 @@ package Trolling.Object
 			var triangleIndex:Vector.<uint> = new Vector.<uint>();
 			
 			var triangleStartIndex:uint = painter.triangleData.vertexData.length;
+//			if(painter.root == this)
+//			{
+//				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0, 0]));
+//				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, 0, 0, 0, 1]));
+//				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, 0, 0, 1, 0]));
+//				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0, 0]));
+//				
+//				triangleIndex.push(triangleStartIndex);
+//				triangleIndex.push(triangleStartIndex+1);
+//				triangleIndex.push(triangleStartIndex+2);
+//				painter.triangleData.indexData.push(triangleIndex);
+//				
+//				triangleIndex = new Vector.<uint>();
+//				triangleIndex.push(triangleStartIndex+2);
+//				triangleIndex.push(triangleStartIndex+3);
+//				triangleIndex.push(triangleStartIndex);
+//				painter.triangleData.indexData.push(triangleIndex);
+//				
+//				painter.setProgram();
+//				painter.triangleData.initData();
+//				painter.createVertexBuffer(1);
+//				painter.createIndexBuffer();
+//				painter.setVertextBuffer(1);
+//				painter.setMatrix();
+//				
+//			//	painter.draw();
+//			}
+			if(painter.root != this)
+			{
+				trace("_width , _height = " + _width + ", " + _height);
+				_texture = painter.context.createTexture(_width, _height, Context3DTextureFormat.BGRA, false);
+				_texture.uploadFromBitmapData(_bitmapData);
+				painter.context.setTextureAt(0, _texture);
 			
-//			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0]));
-//			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0]));
-//			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y+rect.height, 0, 0, 1])); 
-//			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y+rect.height, 0, 1, 1]));
-			
-			trace("_depth = " + _depth);
-			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0, 0]));
-			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, 0, 0, 0, 1]));
-			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, 0, 0, 1, 0]));
-			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0, 0]));
-			
-			
-//			painter.triangleData.vertexData.push(Vector.<Number>([1, 1, 0, 1, 0, 0]));
-//			painter.triangleData.vertexData.push(Vector.<Number>([-1, 1, 0, 0, 0, 0]));
-//			painter.triangleData.vertexData.push(Vector.<Number>([-1, -1, 0, 0, 1, 0]));
-//			painter.triangleData.vertexData.push(Vector.<Number>([1, -1, 0, 0, 0, 1]));
-			
-			triangleIndex.push(triangleStartIndex);
-			triangleIndex.push(triangleStartIndex+1);
-			triangleIndex.push(triangleStartIndex+2);
-			painter.triangleData.indexData.push(triangleIndex);
-			
-			triangleIndex = new Vector.<uint>();
-			triangleIndex.push(triangleStartIndex+2);
-			triangleIndex.push(triangleStartIndex+3);
-			triangleIndex.push(triangleStartIndex);
-			painter.triangleData.indexData.push(triangleIndex);
-			
-			painter.draw();
-		//	painter.present();
-			trace(numChildren);
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, 0, 1, 1]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, 0, 0, 1]));
+				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0]));
+				
+				triangleIndex.push(triangleStartIndex);
+				triangleIndex.push(triangleStartIndex+1);
+				triangleIndex.push(triangleStartIndex+2);
+				painter.triangleData.indexData.push(triangleIndex);
+				
+				triangleIndex = new Vector.<uint>();
+				triangleIndex.push(triangleStartIndex+2);
+				triangleIndex.push(triangleStartIndex+3);
+				triangleIndex.push(triangleStartIndex);
+				painter.triangleData.indexData.push(triangleIndex);
+				
+				painter.setProgram();
+				painter.triangleData.initData();
+				painter.createVertexBuffer(1);
+				painter.createIndexBuffer();
+				painter.setVertextBuffer(1);
+				painter.setMatrix();
+				
+				painter.draw();
+			}
 		}
 		
 		public function getGlobalPoint():Point
@@ -115,14 +155,10 @@ package Trolling.Object
 			var searchObject:DisplayObject = this;
 			while(searchObject.parent != null)
 			{
-				trace("parent = " + searchObject.parent.x + ", " + searchObject.parent.y + ", " + searchObject.parent.width + ", " + searchObject.parent.height);
-				trace("preGlobalPoint =" + globalPoint);
 				globalPoint.x += searchObject.parent.x;
 				globalPoint.y += searchObject.parent.y;
-				trace("nextGlobalPoint =" + globalPoint);
 				
 				searchObject = searchObject.parent;
-				_depth++;
 			}
 			
 			trace(globalPoint);

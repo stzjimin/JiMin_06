@@ -14,17 +14,34 @@ package Trolling.Rendering
 		
 		public function Program()
 		{
+//			_vertexShaderAssembler = new AGALMiniAssembler();
+//			_vertexShaderAssembler.assemble( Context3DProgramType.VERTEX,
+//				"m44 op, va0, vc0\n" + // pos to clipspace
+//				"mov v0, va1" // copy UV
+//			);
+//			
+//			_fragmentShaderAssembler = new AGALMiniAssembler();
+//			_fragmentShaderAssembler.assemble( Context3DProgramType.FRAGMENT,
+//				"tex ft1, v0, fs0 <2d>\n" +
+//				"mov oc, ft1"
+//			);
+			
 			_vertexShaderAssembler = new AGALMiniAssembler();
 			_vertexShaderAssembler.assemble( Context3DProgramType.VERTEX,
-				"m44 op, va0, vc0\n" + // pos to clipspace
-				"mov v0, va1" // copy UV
+				// Apply draw matrix (object -> clip space)
+				"m44 op, va0, vc0\n" +
+				
+				// Scale texture coordinate and copy to varying
+				"mov vt0, va1\n" +
+				"div vt0.xy, vt0.xy, vc4.xy\n" +
+				"mov v0, vt0\n"
 			);
-			
+						
 			_fragmentShaderAssembler = new AGALMiniAssembler();
 			_fragmentShaderAssembler.assemble( Context3DProgramType.FRAGMENT,
-			//	"tex ft1, v0, fs0 <2d>\n" +
-				"mov oc, v0"
+				"tex oc, v0, fs0 <2d,linear,mipnone,clamp>"
 			);
+			
 		}
 		
 		public function get program():Program3D

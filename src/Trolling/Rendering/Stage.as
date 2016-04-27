@@ -14,5 +14,16 @@ package Trolling.Rendering
 			height = stageHeight;
 			_color = color;
 		}
+
+		public function get color():uint
+		{
+			return _color;
+		}
+
+		public function set color(value:uint):void
+		{
+			_color = value;
+		}
+
 	}
 }
