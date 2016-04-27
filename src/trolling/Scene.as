@@ -1,12 +1,12 @@
 package Trolling
 {
-	import Trolling.Object.GameObject;
+	import Trolling.Object.DisplayObject;
 	import Trolling.Rendering.Painter;
 
 	public class Scene
 	{
 		private var _name:String;
-		private var _children:Vector.<GameObject>;
+		private var _children:Vector.<DisplayObject>;
 		private var _isActive:Boolean;
 		
 		public function Scene(name:String)
@@ -19,10 +19,10 @@ package Trolling
 			
 		}
 		
-		public function addChild(child:GameObject):void
+		public function addChild(child:DisplayObject):void
 		{
 			if(_children == null)
-				_children = new Vector.<GameObject>();
+				_children = new Vector.<DisplayObject>();
 			_children.insertAt(_children.length, child);
 		}
 		

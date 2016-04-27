@@ -2,7 +2,7 @@ package Trolling.property.control
 {
 	import flash.utils.Dictionary;
 	
-	import Trolling.Object.GameObject;
+	import Trolling.Object.DisplayObject;
 	import Trolling.property.Property;
 	import Trolling.property.PropertyType;
 
@@ -16,7 +16,7 @@ package Trolling.property.control
 		private var _id:String;
 		private var _movements:Dictionary; // key: KeyCode, value: State 
 		
-		public function Controller(name:String, parent:GameObject, id:String)
+		public function Controller(name:String, parent:DisplayObject, id:String)
 		{
 			super(PropertyType.CONTROLLER, name, parent);
 			
