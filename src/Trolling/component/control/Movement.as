@@ -1,4 +1,4 @@
-package Trolling.component.control
+package Trolling.Component.Control
 {
 	public class Movement
 	{

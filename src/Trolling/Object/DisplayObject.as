@@ -5,7 +5,7 @@ package Trolling.Object
 	import flash.utils.Dictionary;
 	
 	import Trolling.Rendering.Painter;
-	import Trolling.component.Component;
+	import Trolling.Component.Component;
 
 	public class DisplayObject
 	{

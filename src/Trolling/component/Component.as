@@ -1,4 +1,4 @@
-package Trolling.component
+package Trolling.Component
 {
 	import flash.events.EventDispatcher;
 	

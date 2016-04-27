@@ -1,11 +1,11 @@
-package Trolling.component.animation
+package Trolling.Component.Animation
 {
 	import flash.events.KeyboardEvent;
 	import flash.utils.Dictionary;
 	
 	import Trolling.Object.DisplayObject;
-	import Trolling.component.Component;
-	import Trolling.component.ComponentType;
+	import Trolling.Component.Component;
+	import Trolling.Component.ComponentType;
 
 	public class Animator extends Component
 	{

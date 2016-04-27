@@ -1,4 +1,4 @@
-package Trolling.component
+package Trolling.Component
 {
 	public final class ComponentType
 	{
