@@ -1,12 +1,13 @@
 package Trolling.Object
 {
+	import flash.events.EventDispatcher;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
 	import Trolling.Rendering.Painter;
 
-	public class DisplayObject
+	public class DisplayObject extends EventDispatcher
 	{
 		private var _parent:DisplayObject = null;
 		private var _depth:Number;
@@ -49,6 +50,13 @@ package Trolling.Object
 			_depth = 0;
 			painter.triangleData.initArray();
 			var numChildren:int = _children.length;
+			
+			for(var i:int = 0; i < numChildren; i++)
+			{
+				var child:DisplayObject = _children[i];
+				child.render(painter);
+			}
+			
 			trace("numChildren = " + numChildren);
 			var rect:Rectangle = getRectangle();
 			var globalPoint:Point = getGlobalPoint();
@@ -69,24 +77,14 @@ package Trolling.Object
 			
 //			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0]));
 //			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0]));
-//			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y+rect.height, 0, 0, 1]));
+//			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y+rect.height, 0, 0, 1])); 
 //			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y+rect.height, 0, 1, 1]));
 			
 			trace("_depth = " + _depth);
-			if(numChildren == 0)
-			{
-				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0, 0]));
-				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, 0, 0, 0, 1]));
-				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, 0, 0, 1, 0]));
-				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0, 0]));
-			}
-			else
-			{
-				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, -0.5, 1, 0, 0]));
-				painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, -0.5, 0, 0, 1]));
-				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, -0.5, 0, 1, 0]));
-				painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, -0.5, 0, 0, 0]));
-			}
+			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y, 0, 1, 0, 0]));
+			painter.triangleData.vertexData.push(Vector.<Number>([rect.x+rect.width, rect.y-rect.height, 0, 0, 0, 1]));
+			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y-rect.height, 0, 0, 1, 0]));
+			painter.triangleData.vertexData.push(Vector.<Number>([rect.x, rect.y, 0, 0, 0, 0]));
 			
 			
 //			painter.triangleData.vertexData.push(Vector.<Number>([1, 1, 0, 1, 0, 0]));
@@ -105,15 +103,9 @@ package Trolling.Object
 			triangleIndex.push(triangleStartIndex);
 			painter.triangleData.indexData.push(triangleIndex);
 			
-			painter.prePresent();
+			painter.draw();
 		//	painter.present();
 			trace(numChildren);
-			
-			for(var i:int = 0; i < numChildren; i++)
-			{
-				var child:DisplayObject = _children[i];
-				child.render(painter);
-			}
 		}
 		
 		public function getGlobalPoint():Point
@@ -123,8 +115,11 @@ package Trolling.Object
 			var searchObject:DisplayObject = this;
 			while(searchObject.parent != null)
 			{
-				globalPoint.x += parent.x;
-				globalPoint.y -= parent.y;
+				trace("parent = " + searchObject.parent.x + ", " + searchObject.parent.y + ", " + searchObject.parent.width + ", " + searchObject.parent.height);
+				trace("preGlobalPoint =" + globalPoint);
+				globalPoint.x += searchObject.parent.x;
+				globalPoint.y += searchObject.parent.y;
+				trace("nextGlobalPoint =" + globalPoint);
 				
 				searchObject = searchObject.parent;
 				_depth++;

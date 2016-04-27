@@ -100,7 +100,7 @@ package Trolling.Rendering
 			_context.present();	
 		}
 		
-		public function prePresent():void
+		public function draw():void
 		{
 			_triangleData.initData();
 			createVertexBuffer();

@@ -49,7 +49,7 @@ package Trolling.property.animation
 			if (_isPlaying)
 			{
 				// Render
-				// Renderer에 전역적으로 접근이 가능한 구조인지? -> 아니오. nextFrame 이벤트마다 그려야 하는 데이터를 바꿀 것.
+				// Renderer에 전역적으로 접근이 가능한 구조인지? -> 아 니오. nextFrame 이벤트마다 그려야 하는 데이터를 바꿀 것.
 			}
 		}
 	}
