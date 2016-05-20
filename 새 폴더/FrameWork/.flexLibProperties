@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="trolling.component.Component"/>
+    <classEntry path="trolling.object.GameObject"/>
+    <classEntry path="trolling.rendering.Painter"/>
+    <classEntry path="trolling.object.Scene"/>
+    <classEntry path="trolling.rendering.Program"/>
+    <classEntry path="trolling.object.Stage"/>
+    <classEntry path="trolling.rendering.TriangleData"/>
+    <classEntry path="trolling.core.Trolling"/>
+    <classEntry path="trolling.utils.Color"/>
+    <classEntry path="trolling.utils.TextureUtil"/>
+    <classEntry path="trolling.component.ComponentType"/>
+    <classEntry path="trolling.component.DisplayComponent"/>
+    <classEntry path="trolling.component.animation.State"/>
+    <classEntry path="trolling.component.control.Controller"/>
+    <classEntry path="trolling.component.graphic.Image"/>
+    <classEntry path="trolling.rendering.Texture"/>
+    <classEntry path="trolling.event.TouchPhase"/>
+    <classEntry path="trolling.component.physics.Collider"/>
+    <classEntry path="trolling.utils.Circle"/>
+    <classEntry path="trolling.utils.PivotType"/>
+    <classEntry path="trolling.core.ColliderManager"/>
+    <classEntry path="trolling.media.SoundManager"/>
+    <classEntry path="trolling.media.Sound"/>
+    <classEntry path="trolling.core.Disposer"/>
+    <classEntry path="trolling.utils.Copy"/>
+    <classEntry path="trolling.rendering.BatchData"/>
+    <classEntry path="trolling.rendering.ColliderRenderData"/>
+    <classEntry path="trolling.text.TextField"/>
+    <classEntry path="trolling.core.StatsDisplay"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
